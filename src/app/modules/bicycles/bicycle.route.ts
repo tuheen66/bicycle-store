@@ -7,4 +7,10 @@ router.post('/create-bicycle', BicycleControllers.createBicycle);
 
 router.get('/', BicycleControllers.getAllBicycle);
 
+router.get('/:productId', BicycleControllers.getSingleBicycle);
+
+router.put('/:productId', BicycleControllers.updateBicycle);
+
+router.delete('/:productId', BicycleControllers.deleteBicycle);
+
 export const BicycleRoutes = router;
