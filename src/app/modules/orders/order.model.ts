@@ -2,25 +2,28 @@ import mongoose, { model, Schema } from 'mongoose';
 import { TOrder } from './order.interface';
 import { Bicycle } from '../bicycles/bicycle.model';
 
-const orderSchema = new Schema<TOrder>({
-  email: {
-    type: String,
-    required: true,
+const orderSchema = new Schema<TOrder>(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    product: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'bicycle-store',
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
   },
-  product: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'bicycle-store',
-  },
-  quantity: {
-    type: Number,
-    required: true,
-  },
-  totalPrice: {
-    type: Number,
-    required: true,
-  },
-});
+  { timestamps: true },
+);
 
 orderSchema.pre('save', async function (next) {
   const order = this as TOrder;

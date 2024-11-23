@@ -37,9 +37,8 @@ const bicycleSchema = new Schema<TBicycle>(
       type: Boolean,
       required: true,
     },
-  }
+  },
+  { timestamps: true },
 );
-
-
 
 export const Bicycle = model<TBicycle>('Bicycle', bicycleSchema);
