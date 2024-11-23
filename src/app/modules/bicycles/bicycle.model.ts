@@ -1,6 +1,5 @@
 import { model, Schema } from 'mongoose';
 import { TBicycle } from './bicycle.interface';
-import { Date } from 'mongoose';
 
 const bicycleSchema = new Schema<TBicycle>(
   {
@@ -35,10 +34,26 @@ const bicycleSchema = new Schema<TBicycle>(
     },
     inStock: {
       type: Boolean,
-      required: true,
+      default: true,
     },
   },
   { timestamps: true },
 );
+
+bicycleSchema.methods.lowInventory = async function (orderQuantity: number) {
+  if (orderQuantity > this.quantity) {
+    throw new Error('Insufficient stock');
+  }
+};
+
+bicycleSchema.pre('save', function (next) {
+  if (this.quantity === 0) {
+    this.inStock = false;
+  } else {
+    this.inStock = true;
+  }
+
+  next();
+});
 
 export const Bicycle = model<TBicycle>('Bicycle', bicycleSchema);

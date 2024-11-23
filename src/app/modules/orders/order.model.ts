@@ -34,6 +34,7 @@ orderSchema.pre('save', async function (next) {
   }
   if (product.quantity < order.quantity) {
     throw new Error('Insufficient stock for this product');
+    
   }
   product.quantity -= order.quantity;
 

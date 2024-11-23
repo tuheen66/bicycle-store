@@ -19,6 +19,42 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-export const OrderControllers={
-    createOrder
-}
+const getAllOrders = async (req: Request, res: Response) => {
+  try {
+    const result = await orderServices.getAllOrders();
+    res.status(200).json({
+      success: true,
+      message: 'Orders are retrieved successfully',
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'something went wrong',
+      error: err,
+    });
+  }
+};
+
+const getRevenue = async (req: Request, res: Response) => {
+  try {
+    const totalRevenue = await orderServices.calculateRevenue();
+    res.status(200).json({
+      success: true,
+      message: ' Total revenue is calculated successfully',
+      data: { totalRevenue },
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Failed to calculate revenue',
+      status: false,
+      error,
+    });
+  }
+};
+
+export const OrderControllers = {
+  createOrder,
+  getAllOrders,
+  getRevenue,
+};

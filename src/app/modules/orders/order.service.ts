@@ -1,11 +1,35 @@
-import { TOrder } from "./order.interface"
-import { Order } from "./order.model"
+import { TOrder } from './order.interface';
+import { Order } from './order.model';
 
-const createOrder= async (order: TOrder) => {
-    const result = await Order.create(order)
-    return result
-}
+const createOrder = async (order: TOrder) => {
+  const result = await Order.create(order);
+  return result;
+};
 
-export const orderServices={
-    createOrder
-}
+const getAllOrders = async () => {
+    const result = await Order.find();
+    return result;
+  };
+  
+
+const calculateRevenue = async (): Promise<number> => {
+  const result = await Order.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalRevenue: { $sum: '$totalPrice' },
+      },
+    },
+  ]);
+  console.log('Aggregation result:', result[0]?.totalRevenue);
+
+  return result[0]?.totalRevenue || 0;
+};
+
+
+
+export const orderServices = {
+  createOrder,
+  getAllOrders,
+  calculateRevenue,
+};
