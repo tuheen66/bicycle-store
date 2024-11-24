@@ -6,8 +6,21 @@ const createBicycleIntoDB = async (bicycle: TBicycle) => {
   return result;
 };
 
-const getAllBicycleFromDB = async () => {
-  const result = await Bicycle.find();
+const getAllBicycleFromDB = async (searchTerm?: string) => {
+  let filter = {};
+
+  if (searchTerm) {
+    const searchToLower = searchTerm.toLowerCase();
+    filter = {
+      $or: [
+        { name: { $regex: searchToLower, $options: 'i' } },
+        { brand: { $regex: searchToLower, $options: 'i' } },
+        { type: { $regex: searchToLower, $options: 'i' } },
+      ],
+    };
+  }
+
+  const result = await Bicycle.find(filter).exec();
   return result;
 };
 

@@ -6,12 +6,6 @@ const createOrder = async (order: TOrder) => {
   return result;
 };
 
-const getAllOrders = async () => {
-    const result = await Order.find();
-    return result;
-  };
-  
-
 const calculateRevenue = async (): Promise<number> => {
   const result = await Order.aggregate([
     {
@@ -21,15 +15,11 @@ const calculateRevenue = async (): Promise<number> => {
       },
     },
   ]);
-  console.log('Aggregation result:', result[0]?.totalRevenue);
 
   return result[0]?.totalRevenue || 0;
 };
 
-
-
 export const orderServices = {
   createOrder,
-  getAllOrders,
-  calculateRevenue,
+   calculateRevenue,
 };

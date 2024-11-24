@@ -19,23 +19,6 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-const getAllOrders = async (req: Request, res: Response) => {
-  try {
-    const result = await orderServices.getAllOrders();
-    res.status(200).json({
-      success: true,
-      message: 'Orders are retrieved successfully',
-      data: result,
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: 'something went wrong',
-      error: err,
-    });
-  }
-};
-
 const getRevenue = async (req: Request, res: Response) => {
   try {
     const totalRevenue = await orderServices.calculateRevenue();
@@ -55,6 +38,5 @@ const getRevenue = async (req: Request, res: Response) => {
 
 export const OrderControllers = {
   createOrder,
-  getAllOrders,
   getRevenue,
 };
