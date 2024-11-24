@@ -35,7 +35,7 @@ const bicycleSchema = new Schema<TBicycle>(
       type: String,
       required: [true, 'Description is required'],
       minlength: [10, 'Description must be at least 10 characters long'],
-      maxlength: [50, 'Description cannot exceed 50 characters'],
+      maxlength: [150, 'Description cannot exceed 150 characters'],
       trim: true,
     },
     quantity: {

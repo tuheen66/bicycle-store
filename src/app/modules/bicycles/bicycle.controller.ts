@@ -66,7 +66,7 @@ const updateBicycle = async (req: Request, res: Response) => {
 
     res.send({
       success: true,
-      message: 'Bicycle deleted successfully',
+      message: 'Bicycle updated successfully',
       data: result,
     });
   } catch (error) {

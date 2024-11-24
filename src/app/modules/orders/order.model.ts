@@ -38,7 +38,7 @@ orderSchema.pre('save', async function (next) {
   const product = await Bicycle.findById(order.product);
 
   if (!product) {
-    return next(new Error('Product not found'));
+    return next(new Error('Status:404, Product not found'));
   }
   if (product.quantity < order.quantity) {
     return next(new Error('Insufficient stock for this product'));
