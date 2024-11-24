@@ -1,4 +1,4 @@
-import { Bicycle } from '../bicycles/bicycle.model';
+
 import { TOrder } from './order.interface';
 import { Order } from './order.model';
 
