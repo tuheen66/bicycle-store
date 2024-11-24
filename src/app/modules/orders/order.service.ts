@@ -1,3 +1,4 @@
+import { Bicycle } from '../bicycles/bicycle.model';
 import { TOrder } from './order.interface';
 import { Order } from './order.model';
 
@@ -21,5 +22,5 @@ const calculateRevenue = async (): Promise<number> => {
 
 export const orderServices = {
   createOrder,
-   calculateRevenue,
+  calculateRevenue,
 };

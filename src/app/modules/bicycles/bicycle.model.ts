@@ -6,14 +6,21 @@ const bicycleSchema = new Schema<TBicycle>(
     name: {
       type: String,
       required: [true, 'Name is required'],
+      minlength: [5, 'Name must be at least 5 characters long'],
+      maxlength: [30, 'Name cannot exceed 30 characters'],
+      trim: true,
     },
     brand: {
       type: String,
       required: [true, 'Brand is required'],
+      minlength: [5, 'Brand must be at least 5 characters long'],
+      maxlength: [30, 'Brand cannot exceed 30 characters'],
+      trim: true,
     },
     price: {
       type: Number,
       require: [true, 'Price is required'],
+      min: [0, 'Price must be a positive number'],
     },
     type: {
       type: String,
@@ -22,15 +29,19 @@ const bicycleSchema = new Schema<TBicycle>(
         message:
           "{VALUE} : The type of bicycle can only be of the followings : 'Mountain', 'Road', 'Hybrid', 'BMX', 'Electric' ",
       },
-      required: true,
+      required: [true, 'Type is required'],
     },
     description: {
       type: String,
-      required: true,
+      required: [true, 'Description is required'],
+      minlength: [10, 'Description must be at least 10 characters long'],
+      maxlength: [50, 'Description cannot exceed 50 characters'],
+      trim: true,
     },
     quantity: {
       type: Number,
-      required: true,
+      required: [true, 'Quantity is required'],
+      min: [0, 'Quantity must be a positive number'],
     },
     inStock: {
       type: Boolean,

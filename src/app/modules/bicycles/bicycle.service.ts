@@ -2,6 +2,8 @@ import { TBicycle } from './bicycle.interface';
 import { Bicycle } from './bicycle.model';
 
 const createBicycleIntoDB = async (bicycle: TBicycle) => {
+
+  
   const result = await Bicycle.create(bicycle);
   return result;
 };
@@ -11,6 +13,7 @@ const getAllBicycleFromDB = async (searchTerm?: string) => {
 
   if (searchTerm) {
     const searchToLower = searchTerm.toLowerCase();
+
     filter = {
       $or: [
         { name: { $regex: searchToLower, $options: 'i' } },
@@ -20,7 +23,7 @@ const getAllBicycleFromDB = async (searchTerm?: string) => {
     };
   }
 
-  const result = await Bicycle.find(filter).exec();
+  const result = await Bicycle.find(filter);
   return result;
 };
 

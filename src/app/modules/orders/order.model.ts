@@ -6,20 +6,28 @@ const orderSchema = new Schema<TOrder>(
   {
     email: {
       type: String,
-      required: true,
+      required: [true, 'Email is required'],
+      trim: true,
+      lowercase: true,
+      match: [
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+        'Please enter a valid email address',
+      ],
     },
     product: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      required: [true, 'Product reference is required'],
       ref: 'bicycle-store',
     },
     quantity: {
       type: Number,
-      required: true,
+      required: [true, 'Quantity is required'],
+      min: [1, 'Quantity must be at least 1'],
     },
     totalPrice: {
       type: Number,
-      required: true,
+      required: [true, 'Total price is required'],
+      min: [0, 'Total price must be a positive number'],
     },
   },
   { timestamps: true },
@@ -30,11 +38,10 @@ orderSchema.pre('save', async function (next) {
   const product = await Bicycle.findById(order.product);
 
   if (!product) {
-    throw new Error('Product not found');
+    return next(new Error('Product not found'));
   }
   if (product.quantity < order.quantity) {
-    throw new Error('Insufficient stock for this product');
-    
+    return next(new Error('Insufficient stock for this product'));
   }
   product.quantity -= order.quantity;
 
