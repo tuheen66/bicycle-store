@@ -1,6 +1,18 @@
 # Project name: Bicycle store
 
-## The project has a database bicycle-store and has two databases - bicycle and orders.
+## Technology used:
+* Node.js
+* Express.js
+* Mongoose
+* TypeScript - installed as dev dependency
+
+In addition to those I installed -
+* eslint - to check and fix code errors.
+* prettier - to format code to have better look.
+* ts-node-dev - to run the server every time the code is updated
+
+
+## The project has a database named bicycle-store and has two databases - bicycle and orders.
 
 Both the database has its own module where all the actions happen.
 
