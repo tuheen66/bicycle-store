@@ -1,4 +1,5 @@
-# Project name: Bicycle store
+# Project name: Bicycle Store
+## Live server link:  https://bicycle-store-blond.vercel.app/
 
 ## Technology used:
 * Node.js
