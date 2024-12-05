@@ -1,12 +1,12 @@
+
 import { TBicycle } from './bicycle.interface';
 import { Bicycle } from './bicycle.model';
 
 const createBicycleIntoDB = async (bicycle: TBicycle) => {
-
-  
   const result = await Bicycle.create(bicycle);
   return result;
 };
+
 
 const getAllBicycleFromDB = async (searchTerm?: string) => {
   let filter = {};

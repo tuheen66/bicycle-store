@@ -1,21 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import { BicycleServices } from './bicycle.service';
 
 const createBicycle = async (req: Request, res: Response) => {
   try {
     const bicycle = req.body;
-
     const result = await BicycleServices.createBicycleIntoDB(bicycle);
 
     res.status(200).json({
       success: true,
-      message: 'Bicycle created successfully',
+      message: 'Bicycle is created successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
-      message: 'Something went wrong',
+      message: error.message,
       error,
     });
   }

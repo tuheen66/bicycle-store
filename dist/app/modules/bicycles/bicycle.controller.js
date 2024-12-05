@@ -17,18 +17,35 @@ const createBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const result = yield bicycle_service_1.BicycleServices.createBicycleIntoDB(bicycle);
         res.status(200).json({
             success: true,
-            message: 'Bicycle created successfully',
+            message: 'Bicycle is created successfully',
             data: result,
         });
     }
     catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Something went wrong',
+            message: error.message,
             error,
         });
     }
 });
+// const createBicycle = async (req: Request, res: Response) => {
+//   try {
+//     // const bicycle = req.body;
+//     const result = await BicycleServices.createBicycleIntoDB(req.body);
+//     res.status(200).json({
+//       success: true,
+//       message: 'Bicycle created successfully',
+//       data: result,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: 'Something went wrong',
+//       error,
+//     });
+//   }
+// };
 const getAllBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { searchTerm } = req.query;
