@@ -51,20 +51,20 @@ const bicycleSchema = new Schema<TBicycle>(
   { timestamps: true },
 );
 
-// bicycleSchema.methods.lowInventory = async function (orderQuantity: number) {
-//   if (orderQuantity > this.quantity) {
-//     throw new Error('Insufficient stock');
-//   }
-// };
+bicycleSchema.methods.lowInventory = async function (orderQuantity: number) {
+  if (orderQuantity > this.quantity) {
+    throw new Error('Insufficient stock');
+  }
+};
 
-// bicycleSchema.pre('save', function (next) {
-//   if (this.quantity === 0) {
-//     this.inStock = false;
-//   } else {
-//     this.inStock = true;
-//   }
+bicycleSchema.pre('save', function (next) {
+  if (this.quantity === 0) {
+    this.inStock = false;
+  } else {
+    this.inStock = true;
+  }
 
-//   next();
-// });
+  next();
+});
 
 export const Bicycle = model<TBicycle>('Bicycle', bicycleSchema);
