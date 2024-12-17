@@ -33,7 +33,9 @@ const getSingleBicycle = async (id: string) => {
 };
 
 const updateBicycle = async (productId: string, data: Partial<TBicycle>) => {
-  const result = await Bicycle.findByIdAndUpdate(productId, data);
+  const result = await Bicycle.findByIdAndUpdate(productId, data,{
+    new:true
+  });
   return result;
 };
 

@@ -81,12 +81,12 @@ const updateBicycle = async (req: Request, res: Response) => {
 const deleteBicycle = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
-    const result = await BicycleServices.deleteBicycle(id);
+    await BicycleServices.deleteBicycle(id);
 
     res.send({
       success: true,
       message: 'Bicycle deleted successfully',
-      data: { result },
+      data: {},
     });
   } catch (error) {
     res.send({
