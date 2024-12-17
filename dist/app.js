@@ -12,7 +12,6 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use('/api/products', bicycle_route_1.BicycleRoutes);
 app.use('/api/orders', order_route_1.OrderRoutes);
-app.use('/api/orders/revenue', order_route_1.OrderRoutes);
 app.get('/', (req, res) => {
     res.send({
         status: true,

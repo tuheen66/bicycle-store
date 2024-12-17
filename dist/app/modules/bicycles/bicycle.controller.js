@@ -87,11 +87,11 @@ const updateBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const deleteBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.productId;
-        const result = yield bicycle_service_1.BicycleServices.deleteBicycle(id);
+        yield bicycle_service_1.BicycleServices.deleteBicycle(id);
         res.send({
             success: true,
             message: 'Bicycle deleted successfully',
-            data: { result },
+            data: {},
         });
     }
     catch (error) {

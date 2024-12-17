@@ -35,7 +35,9 @@ const getSingleBicycle = (id) => __awaiter(void 0, void 0, void 0, function* () 
     return result;
 });
 const updateBicycle = (productId, data) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield bicycle_model_1.Bicycle.findByIdAndUpdate(productId, data);
+    const result = yield bicycle_model_1.Bicycle.findByIdAndUpdate(productId, data, {
+        new: true
+    });
     return result;
 });
 const deleteBicycle = (productId) => __awaiter(void 0, void 0, void 0, function* () {
