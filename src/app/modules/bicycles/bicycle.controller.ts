@@ -17,6 +17,7 @@ const createBicycle = async (req: Request, res: Response) => {
       success: false,
       message: error.message,
       error,
+      stack: error.stack,
     });
   }
 };
@@ -31,11 +32,12 @@ const getAllBicycle = async (req: Request, res: Response) => {
       message: 'Bicycles are retrieved successfully',
       data: result,
     });
-  } catch (err) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: 'something went wrong',
-      error: err,
+      error: error.message,
+      stack: error.stack,
     });
   }
 };
@@ -49,11 +51,12 @@ const getSingleBicycle = async (req: Request, res: Response) => {
       message: 'Bicycle retrieved successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (error:any) {
     res.send({
       success: false,
       message: 'Something went wrong',
-      error,
+      error:error.message,
+      stack: error.stack,
     });
   }
 };
@@ -69,11 +72,12 @@ const updateBicycle = async (req: Request, res: Response) => {
       message: 'Bicycle updated successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (error:any) {
     res.send({
       success: false,
       message: 'Something went wrong',
-      error,
+      error:error.message,
+      stack: error.stack,
     });
   }
 };
@@ -88,11 +92,12 @@ const deleteBicycle = async (req: Request, res: Response) => {
       message: 'Bicycle deleted successfully',
       data: {},
     });
-  } catch (error) {
+  } catch (error:any) {
     res.send({
       success: false,
       message: 'Something went wrong',
-      error,
+      error:error.message,
+      stack: error.stack,
     });
   }
 };
